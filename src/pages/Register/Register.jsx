@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import bcrypt from 'bcryptjs'; // Import bcryptjs library
+
 
 import useAxiosPublic from '../../hooks/AxiosPublic';
 
@@ -43,9 +43,8 @@ const Register = () => {
 
       const imgbbImageLink = imgbbResponse.data.data.url;
 
-      const hashedPassword = await bcrypt.hash(data.password, 10); // Hash the password
 
-      const authResult = await createUser(data.email, hashedPassword); // Store the hashed password
+      const authResult = await createUser(data.email, data.password); // Store the hashed password
       const loggedUser = authResult.user;
       console.log(loggedUser);
       await updateUserProfile(data.name, imgbbImageLink);
@@ -58,7 +57,6 @@ const Register = () => {
         name: data.name,
         email: data.email,
         photoURL: imgbbImageLink,
-        hashedPassword, // Store the hashed password in the database
       };
 
       const mongoDbResponse = await axiosPublic.post('/users', userInfo);

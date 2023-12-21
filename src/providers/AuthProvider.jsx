@@ -12,23 +12,10 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const createUser = (name, email, password, photoURL) => {
+    const createUser = (email, password) =>{
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Add the user's first name and last name to their profile
-            const user = userCredential.user;
-            return updateProfile(user, {
-              displayName: `${name}`,
-              photoURL: photoURL || "" ,
-            });
-          })
-          .catch((error) => {
-            console.error("Error creating user:", error);
-            throw error; // Propagate the error to the caller
-          });
-      };
-
+    }
       
     const signIn = (email,password) => {
         setLoading(true);
@@ -45,6 +32,13 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return signOut(auth);
     }
+
+    const updateUserProfile =(name, photo)=>{
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+          })
+          
+    }
     
     const authInfo = {
         user,
@@ -54,7 +48,7 @@ const AuthProvider = ({children}) => {
         googleSignIn,
         logOut,
         loading,
-        setLoading,
+        updateUserProfile,
   
     };
     return (
