@@ -1,17 +1,26 @@
 import { NavLink, Outlet } from "react-router-dom";
 import {  FaEnvelope, FaHome, FaRegCalendarCheck, FaSearch, FaUser } from "react-icons/fa";
 import {  MdOutput } from "react-icons/md";
+import useAuth from "../hooks/useAuth";
 
 
 
 
 const Dashboard = () => {
-  
+    const { user } = useAuth();
+    console.log("User",user);
 
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-[#4dd0e1]">
-      
+            <div className="flex flex-col items-center justify-center p-4">
+          <img
+            src={user.photoURL} // Replace with the actual URL of the user's profile picture
+            alt="Profile"
+            className="w-20 h-20 rounded-full mr-2"
+          />
+          <span className="text-white">{user.displayName}</span>
+        </div>
                 <ul className="menu p-4">
                 
 
