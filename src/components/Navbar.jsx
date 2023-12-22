@@ -23,7 +23,7 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1">
     <Link to="/"><li><a>Home</a></li></Link>
         <Link to="/"><li><a>All Tasks</a></li></Link>
-        <Link to="/"><li><a>Blog</a></li></Link>
+        <Link to="/dashboard"><li><a>Dashboard</a></li></Link>
     </ul>
   </div>
   <div className="navbar-end gap-4">
