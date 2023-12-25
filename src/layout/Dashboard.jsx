@@ -353,14 +353,24 @@ const Dashboard = () => {
       setTasks([]);
     };
   }, [axiosPublic, user.email]);
+  
   const updateTaskList = async () => {
     try {
+      const userEmail = user?.email; // Assuming 'user' is available from your context or state
+  
+      // Fetch all tasks from the backend
       const response = await axiosPublic.get('/tasks');
-      setTasks(response.data);
+  
+      // Filter tasks based on the user's email
+      const filteredTasks = response.data.filter(task => task.email === userEmail);
+  
+      // Update the state with filtered tasks
+      setTasks(filteredTasks);
     } catch (error) {
       console.error('Error updating task list:', error);
     }
   };
+  
 
   const handleTaskAdded = () => {
     setShowAddForm(false);
