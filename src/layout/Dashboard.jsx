@@ -327,26 +327,32 @@ const Dashboard = () => {
 
   useEffect(() => {
     console.log('Dashboard component mounted or updated');
-
+  
     const fetchTasks = async () => {
       console.log('Fetching tasks...');
       try {
+        // Fetch all tasks
         const response = await axiosPublic.get('/tasks');
-        setTasks(response.data);
+        const allTasks = response.data;
+  
+        // Filter tasks based on the user's email
+        const userTasks = allTasks.filter(task => task.email === user.email);
+  
+        // Set filtered tasks in the state
+        setTasks(userTasks);
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     };
-
+  
     fetchTasks();
-
+  
     return () => {
       console.log('Dashboard component will unmount');
-      // Cleanup or reset state when component unmounts
+      // Cleanup or reset state when the component unmounts
       setTasks([]);
     };
-  }, [axiosPublic]);
-
+  }, [axiosPublic, user.email]);
   const updateTaskList = async () => {
     try {
       const response = await axiosPublic.get('/tasks');
@@ -407,8 +413,16 @@ const Dashboard = () => {
 
   const handleShowTaskList = async () => {
     try {
+      // Fetch all tasks
       const response = await axiosPublic.get('/tasks');
-      setTasks(response.data);
+      const allTasks = response.data;
+  
+      // Filter tasks based on the user's email
+      const userTasks = allTasks.filter(task => task.email === user.email);
+  
+      // Set filtered tasks in the state
+      setTasks(userTasks);
+  
       setShowAddForm(false); // Close the Add Task form if open
       setShowEditForm(false); // Close the Edit Task form if open
     } catch (error) {

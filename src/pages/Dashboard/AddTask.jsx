@@ -1,19 +1,23 @@
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAuth from '../../hooks/useAuth';
 
 const AddTask = ({ onTaskAdded }) => {
+    const { user } = useAuth();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const axiosPublic = useAxiosPublic();
 
   const onSubmit = async (data) => {
     try {
+        const userEmail = user ? user.email : null;
       const testItem = {
         title: data.title,
         description: data.description,
         date: data.deadline,
         priority: data.priority,
         status: 'to-do',
+        email: userEmail,
       };
 
       const response = await axiosPublic.post('/tasks', testItem);
