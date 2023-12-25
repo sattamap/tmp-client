@@ -1,40 +1,8 @@
-// const TaskList = ({ tasks, title }) => {
-//     return (
-//       <div className="mr-4 w-80"> {/* Set a fixed width for each TaskList */}
-        
-//         {/* {tasks.length === 0 ? (
-//           <p>No tasks in the {title.toLowerCase()} list.</p>
-//         ) : (
-          
-//         )} */}
-//             <div className="bg-emerald-600 rounded-xl p-4 mb-4">
-//           <h2 className="text-white">{title} List</h2>
-//         </div>
-//         <div className="flex flex-col border border-solid">
-    
-//             {tasks.map((task) => (
-//               <div key={task._id} className="mb-4">
-//                 <div className="card bg-base-100 shadow-xl">
-//                   <div className="card-body">
-//                     <h2 className="card-title">{task.title}</h2>
-//                     <p>{task.description}</p>
-//                     <p>Deadline: {task.date}</p>
-//                     <p>Priority: {task.priority}</p>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//       </div>
-//     );
-//   };
-  
-//   export default TaskList;
 
-import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
-import { Link } from 'react-router-dom';
+
+import PropTypes from 'prop-types';
 
 const TaskList = ({ tasks, title, droppableId, onDeleteTask, onEditTask }) => {
   const axiosPublic = useAxiosPublic();
@@ -105,6 +73,15 @@ const TaskList = ({ tasks, title, droppableId, onDeleteTask, onEditTask }) => {
   );
 };
 
+TaskList.propTypes = {
+    tasks: PropTypes.object ,
+    title: PropTypes.string,
+    droppableId: PropTypes.number ,
+    onDeleteTask: PropTypes.func ,
+    onEditTask: PropTypes.func ,
+}
+
+
 export default TaskList;
 
 
@@ -115,39 +92,3 @@ export default TaskList;
   
   
   
-
-
-// TaskList.jsx
-// TaskList.jsx
-// TaskList.jsx
-// import { Droppable, Draggable } from 'react-beautiful-dnd';
-// import TaskItem from './TaskItem';
-
-// const TaskList = ({ tasks, status }) => {
-//   return (
-//     <Droppable droppableId={status} key={status}>
-//       {(provided) => (
-//         <div {...provided.droppableProps} ref={provided.innerRef}>
-//           {tasks.map((task, index) => (
-//             <Draggable key={task._id} draggableId={task._id} index={index}>
-//               {(provided) => (
-//                 <div
-//                   {...provided.draggableProps}
-//                   {...provided.dragHandleProps}
-//                   ref={provided.innerRef}
-//                 >
-//                   <TaskItem task={task} />
-//                 </div>
-//               )}
-//             </Draggable>
-//           ))}
-//           {provided.placeholder}
-//         </div>
-//       )}
-//     </Droppable>
-//   );
-// };
-
-// export default TaskList;
-
-

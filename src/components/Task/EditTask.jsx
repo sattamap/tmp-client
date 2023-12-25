@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+
 
 const EditTask = ({ task, onSave, onCancel }) => {
-  const axiosPublic = useAxiosPublic();
+  console.log(typeof(task));
+    const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     defaultValues: {
       title: task.title,
@@ -85,5 +89,13 @@ const EditTask = ({ task, onSave, onCancel }) => {
     </div>
   );
 };
+
+
+EditTask.propTypes = {
+    task: PropTypes.object ,
+    onSave: PropTypes.func,
+    onCancel: PropTypes.func ,
+
+}
 
 export default EditTask;

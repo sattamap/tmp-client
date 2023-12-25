@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
+import PropTypes from 'prop-types';
 
 const AddTask = ({ onTaskAdded }) => {
     const { user } = useAuth();
@@ -116,28 +117,13 @@ const AddTask = ({ onTaskAdded }) => {
   );
 };
 
+
+AddTask.propTypes = {
+    onTaskAdded: PropTypes.func ,
+}
+
 export default AddTask;
 
 
 
 
-
-// import { useState } from 'react';
-// import TaskList from '../../components/Task/TaskList';
-
-
-
-// const [tasks, setTasks] = useState([]);
-  
-// const updateTaskList = async () => {
-//   try {
-//     const response = await axiosPublic.get('/tasks');
-//     setTasks(response.data);
-//   } catch (error) {
-//     console.error('Error updating task list:', error);
-//   }
-// };
-
-//  updateTaskList();
-
-// <TaskList tasks={tasks} />
