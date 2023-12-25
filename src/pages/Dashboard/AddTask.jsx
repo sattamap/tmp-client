@@ -2,56 +2,53 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
-
-
 const AddTask = ({ onTaskAdded }) => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const axiosPublic = useAxiosPublic();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const axiosPublic = useAxiosPublic();
 
-  
-    const onSubmit = async (data) => {
-      try {
-        const testItem = {
-          title: data.title,
-          description: data.description,
-          date: data.deadline,
-          priority: data.priority,
-          status: 'to-do',
-        };
-  
-        const response = await axiosPublic.post('/tasks', testItem);
-  
-        if (response.data && response.data.insertedId) {
-          reset();
-          // Call the updateTaskList function to fetch and update the task list
-          onTaskAdded();
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: `${data.title} is added to the tasks.`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } else {
-          console.error('Invalid response structure:', response);
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Failed to add task. Please try again.',
-          });
-        }
-      } catch (error) {
-        console.error('Unexpected error:', error);
+  const onSubmit = async (data) => {
+    try {
+      const testItem = {
+        title: data.title,
+        description: data.description,
+        date: data.deadline,
+        priority: data.priority,
+        status: 'to-do',
+      };
+
+      const response = await axiosPublic.post('/tasks', testItem);
+
+      if (response.data && response.data.insertedId) {
+        reset();
+        // Call the updateTaskList function to fetch and update the task list
+        onTaskAdded();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: `${data.title} is added to the tasks.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        console.error('Invalid response structure:', response);
         Swal.fire({
           icon: 'error',
           title: 'Error',
           text: 'Failed to add task. Please try again.',
         });
       }
-    };
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to add task. Please try again.',
+      });
+    }
+  };
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="w-3/5 mx-auto bg-white p-8 my-10 rounded-md shadow-xl">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
@@ -111,13 +108,12 @@ const AddTask = ({ onTaskAdded }) => {
           </button>
         </div>
       </form>
-
-  
     </div>
   );
 };
 
 export default AddTask;
+
 
 
 
