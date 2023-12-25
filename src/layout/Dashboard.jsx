@@ -432,7 +432,7 @@ const Dashboard = () => {
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className="flex">
-        <div className="w-64 min-h-screen bg-[#4dd0e1]">
+        <div className="w-64 min-h-screen bg-[#38a9a1]">
           <div className="flex flex-col items-center justify-center p-4">
             <img src={user?.photoURL} alt="Profile" className="w-20 h-20 rounded-full mr-2" />
             <span className="text-white">{user?.displayName}</span>
@@ -464,7 +464,7 @@ const Dashboard = () => {
           </ul>
         </div>
 
-        <div className="border border-solid w-4/6 flex flex-row p-10">
+        <div className="w-4/6 flex flex-row p-10">
           {showAddForm ? (
             <AddTask onTaskAdded={handleTaskAdded} />
           ) : showEditForm ? (

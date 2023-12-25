@@ -52,10 +52,10 @@ const TaskList = ({ tasks, title, droppableId, onDeleteTask, onEditTask }) => {
     <Droppable droppableId={droppableId} key={droppableId}>
       {(provided) => (
         <div {...provided.droppableProps} ref={provided.innerRef} className="mr-4 w-80">
-          <div className="bg-emerald-600 rounded-xl p-4 mb-4">
+          <div className="bg-emerald-600 rounded-xl p-4 mb-4 text-center">
             <h2 className="text-white">{title} List</h2>
           </div>
-          <div className="flex flex-col border border-solid">
+          <div className="flex flex-col ">
             {tasks.map((task, index) => (
               <Draggable key={task._id} draggableId={task._id} index={index}>
                 {(provided) => (
@@ -65,7 +65,7 @@ const TaskList = ({ tasks, title, droppableId, onDeleteTask, onEditTask }) => {
                     ref={provided.innerRef}
                     className="mb-4"
                   >
-                    <div className="card bg-base-100 shadow-xl rounded-md p-4">
+                    <div className="card bg-base-100 shadow-2xl rounded-md p-4">
                       <div className="card-body">
                         <h2 className="card-title text-xl font-semibold mb-2">{task.title}</h2>
                         <p className="text-gray-600">{task.description}</p>
