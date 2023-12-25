@@ -95,7 +95,8 @@ const Register = () => {
           <div className="md:text-4xl text-2xl text-center mb-3">
             <h1>Sign Up now!</h1>
             <p className="text-base mb-3">
-              Embark on your journey to a healthier future by creating an account! Sign up today to unlock personalized diagnostic services, expert healthcare updates, and a seamless experience tailored just for you.
+            Embark on your journey to a better future by creating an account! Sign up today to access personalized services, expert updates, and a seamless experience tailored just for you.
+        
             </p>
           </div>
           <div className="md:w-96 w-full">

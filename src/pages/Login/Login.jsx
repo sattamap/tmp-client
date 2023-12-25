@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
+import GoogleLogin from '../../components/GoogleLogin';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -32,9 +33,9 @@ const Login = () => {
       <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="text-center md:text-left mb-8">
-            <h4 className="text-4xl font-bold mb-4">Login now!</h4>
+            <h4 className="text-4xl font-bold mb-4">Welcome Back!</h4>
             <p className="text-base">
-              Welcome! Your journey to wellness begins with a secure login, providing you instant access to your personalized diagnostic insights and healthcare updates.
+              Log in to access your personalized dashboard and manage your tasks with ease. Your journey with our application continues here.
             </p>
           </div>
           <div>
@@ -74,7 +75,10 @@ const Login = () => {
               New Here? <Link to="/register" className="text-blue-500">Create an account</Link>
             </p>
             {/* Include your GoogleLogin component here */}
+            <div className="divider">OR</div>
+            <GoogleLogin></GoogleLogin>
           </div>
+          
         </div>
       </div>
     </div>
